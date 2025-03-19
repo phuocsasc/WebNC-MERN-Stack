@@ -1,0 +1,128 @@
+/* General Styles */
+.container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0px 16px;
+}
+
+/* Banner */
+.flex {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+}
+
+img {
+      width: 100%;
+      max-width: 2000px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s ease-in-out;
+}
+
+img:hover {
+      transform: scale(1.05);
+}
+
+/* Titles */
+.text-center {
+      text-align: center;
+}
+
+h2 {
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+}
+
+.text-yellow-500 {
+      color: #facc15;
+}
+
+.text-red-500 {
+      color: #ef4444;
+}
+
+.text-orange-500 {
+      color: #f97316;
+}
+
+/* Product Grid */
+.grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+}
+
+@media (min-width: 768px) {
+      .grid {
+            grid-template-columns: repeat(3, 1fr);
+      }
+}
+
+/* Product Card */
+.bg-white {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      transition: box-shadow 0.3s ease;
+}
+
+.bg-white:hover {
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Product Image */
+.w-full {
+      width: 100%;
+}
+
+.h-60 {
+      height: 240px;
+}
+
+.object-cover {
+      object-fit: cover;
+}
+
+.rounded-lg {
+      border-radius: 8px;
+}
+
+/* Product Details */
+.text-lg {
+      font-size: 18px;
+      font-weight: 600;
+}
+
+.font-semibold {
+      font-weight: 600;
+}
+
+.font-bold {
+      font-weight: 700;
+}
+
+.mt-4 {
+      margin-top: 16px;
+}
+
+/* Button Styles */
+.bg-blue-500 {
+      background-color: #3b82f6;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s;
+}
+
+.bg-blue-500:hover {
+      background-color: #1d4ed8;
+}
