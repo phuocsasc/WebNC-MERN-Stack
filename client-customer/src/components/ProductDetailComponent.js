@@ -69,15 +69,17 @@ class ProductDetail extends Component {
   }
   // event-handlers
   btnAdd2CartClick(e) {
-    e.preventDefault();
-    const product = this.state.product;
-    const quantity = parseInt(this.state.txtQuantity);
-    if (quantity) {
-      const mycart = this.context.mycart;
-      const index = mycart.findIndex(x => x.product._id === product._id); // check if the _id exists in mycart
-      if (index === -1) { // not found, push newItem
-        const newItem = { product: product, quantity: quantity };
-        mycart.push(newItem);
+    e.preventDefault(); // Dùng để ngăn trình duyệt tải lại trang khi người dùng bấm nút.
+    const product = this.state.product; // Lấy sản phẩm đang hiển thị.
+    const quantity = parseInt(this.state.txtQuantity); // Chuyển đổi số lượng từ chuỗi (txtQuantity) sang số nguyên.
+    if (quantity) { // Kiểm tra số lượng có hợp lệ không
+      const mycart = this.context.mycart; // lấy giỏ hàng ra lại từ context global của React cụ thể là file MyProvider.js
+      const index = mycart.findIndex(x => x.product._id === product._id); // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+      // Duyệt danh sách giỏ hàng (mycart) để tìm sản phẩm có cùng _id.
+      // Nếu sản phẩm đã có trong giỏ hàng, index sẽ trả về vị trí của nó. 0 1 2 ...
+      if (index === -1) { // Nếu chưa có sản phẩm trong giỏ hàng
+        const newItem = { product: product, quantity: quantity }; // tạo một object newItem chứa: Thông tin sản phẩm, Số lượng sản phẩm
+        mycart.push(newItem); 
       } else { // increasing the quantity
         mycart[index].quantity += quantity;
       }

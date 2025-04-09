@@ -7,10 +7,10 @@ class Inform extends Component {
 
   render() {
     return (
-      <div className="container-fluid bg-light py-0 border-bottom fixed-top w-100">
+      <div className="container-fluid bg-light py-0 border-bottom fixed-top w-100 shadow">
         <div className="row align-items-center">
           {/* Cột bên trái: Thông tin đăng nhập */}
-          <div className="col-md-8 text-start">
+          <div className="col-md-12 text-start">
             {this.context.token === '' ? (
               <div>
                 <Link to='/login' className="btn">Login</Link> 
@@ -21,24 +21,22 @@ class Inform extends Component {
               </div>
             ) : (
               <div>
-                  <span className="me-3">Hello <b>{this.context.customer.name}</b></span> 
+                  <span className="me-3">👋 Hello <b>{this.context.customer.name}</b></span> 
                   <span className="text-muted">|</span>
                   <Link to='/home' className="btn" onClick={() => this.lnkLogoutClick()}>Logout</Link> 
                   <span className="text-muted">|</span>
                   <Link to='/myprofile' className="btn">My profile</Link> 
                   <span className="text-muted">|</span>
-                <Link to='/myorders' className="btn">My orders</Link>
+                  <Link to='/myorders' className="btn">My orders</Link>
+                  <span className="text-muted">|</span>
+                  <Link to='/mycart' className="btn ">
+                    My Cart <span className="badge bg-danger ms-1">{this.context.mycart.length}</span>
+                  </Link>
               </div>
             )}
           </div>
 
-          {/* Cột bên phải: Giỏ hàng */}
-          <div className="col-md-4 text-end">
-            
-            <Link to='/mycart' className="btn ">
-              My Cart <span className="badge bg-danger ms-1">{this.context.mycart.length}</span>
-            </Link>
-          </div>
+        
         </div>
       </div>
     );

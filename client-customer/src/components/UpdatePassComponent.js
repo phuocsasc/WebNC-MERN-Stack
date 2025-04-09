@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import axios from "axios";
 
 const UpdatePassComponent = () => {
       const { token } = useParams(); // ✅ Lấy token từ URL
-      const navigate = useNavigate();
 
       const [newPassword, setNewPassword] = useState("");
       const [confirmPassword, setConfirmPassword] = useState("");
@@ -30,7 +29,6 @@ const UpdatePassComponent = () => {
                   });
 
                   setMessage(response.data.message);
-                  setTimeout(() => navigate("/login"), 3000);
             } catch (err) {
                   setError(err.response?.data?.error || "Có lỗi xảy ra, vui lòng thử lại! update");
             }

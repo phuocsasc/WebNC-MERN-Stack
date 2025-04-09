@@ -32,6 +32,9 @@
   width: 70px;
 }
 
+.text-start {
+  text-align: right !important;
+}
 
 
 /* =====================End=================== */

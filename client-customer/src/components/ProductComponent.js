@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom';
 import withRouter from '../utils/withRouter';
 
 class Product extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  constructor(props) { // hàm khởi tạo của component, đang nhận props từ bên ngoài.
+    super(props); // Kế thừa constructor của React.Component. Cho phép ta sử dụng this.props
+    this.state = { // Khởi tạo state là nơi lưu dữ liệu nội bộ của component, với một mảng products rỗng.
       products: []
     };
   }
   render() {
-    const prods = this.state.products.map((item) => {
-      return (
-        <div key={item._id} className="col-md-4 mb-4">
+    const prods = this.state.products.map((item) => { // lấy danh sách sản phẩm từ state. map qua từng sản phẩm
+      return ( // React yêu cầu mỗi phần tử trong list phải có key duy nhất để tối ưu render lại.
+        <div key={item._id} className="col-md-4 mb-4"> 
           <div className="card h-100 shadow-sm">
             <Link to={'/product/' + item._id}>
               <img src={"data:image/jpg;base64," + item.image} className="card-img-top" alt={item.name} />

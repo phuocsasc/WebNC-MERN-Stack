@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 
 class Signup extends Component {
+  // Khởi tạo state chứa thông tin đăng ký
   constructor(props) {
     super(props);
     this.state = {
@@ -51,7 +52,7 @@ class Signup extends Component {
   }
   // event-handlers
   btnSignupClick(e) {
-    e.preventDefault();
+    e.preventDefault(); // Ngăn form tải lại trang
     const username = this.state.txtUsername;
     const password = this.state.txtPassword;
     const name = this.state.txtName;
@@ -60,7 +61,7 @@ class Signup extends Component {
     const email = this.state.txtEmail;
     if (username && password && name && phone && address && email) {
       const account = { username: username, password: password, name: name, phone: phone, address: address, email: email };
-      this.apiSignup(account);
+      this.apiSignup(account); // Gọi API đăng ký
     } else {
       alert('Please input username and password and name and phone and address and email');
     }

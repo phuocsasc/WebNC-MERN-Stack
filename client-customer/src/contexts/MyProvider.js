@@ -21,7 +21,7 @@ class MyProvider extends Component {
   setCustomer = (value) => {
     this.setState({ customer: value });
   }
-  setMycart = (value) => {
+  setMycart = (value) => { // Hàm cập nhật giỏ hàng
     this.setState({ mycart: value });
   }
   render() {
