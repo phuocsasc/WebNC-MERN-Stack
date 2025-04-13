@@ -41,5 +41,5 @@
     ]
   },
   "homepage": "/",
-  "proxy": "http://localhost:3000"
+  "proxy": "https://server-jg2a.onrender.com"
 }
