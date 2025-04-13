@@ -22,8 +22,8 @@ const CustomerSchema = mongoose.Schema({
   email: String,
   active: Number,
   token: String,
-  resetToken: { type: String, default: null }, // Token đặt lại mật khẩu
-  tokenExpiry: { type: Date, default: null }, // Hạn sử dụng của token đặt lại mật khẩu
+  resetToken: { type: String, default: null }, // ✅ Token đặt lại mật khẩu
+  tokenExpiry: { type: Date, default: null }, // ⏳ Hạn sử dụng của token đặt lại mật khẩu
 }, { versionKey: false });
 
 const ProductSchema = mongoose.Schema({

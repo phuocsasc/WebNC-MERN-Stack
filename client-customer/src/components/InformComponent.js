@@ -13,35 +13,34 @@ class Inform extends Component {
           <div className="col-md-12 text-start">
             {this.context.token === '' ? (
               <div>
-                <Link to='/login' className="btn">Login</Link> 
+                <Link to='/login' id="hd-cl" className="btn">Login</Link> 
                 <span className="text-muted">|</span>
-                <Link to='/signup' className="btn">Sign-up</Link> 
+                <Link to='/signup' id="hd-cl" className="btn">Sign-up</Link> 
                 <span className="text-muted">|</span>
-                <Link to='/active' className="btn">Active</Link>
+                <Link to='/active' id="hd-cl" className="btn">Active</Link>
               </div>
             ) : (
               <div>
-                  <span className="me-3">👋 Hello <b>{this.context.customer.name}</b></span> 
+                  <span id="hd-cl" className="me-3">👋 Hello <b>{this.context.customer.name}</b></span> 
                   <span className="text-muted">|</span>
-                  <Link to='/home' className="btn" onClick={() => this.lnkLogoutClick()}>Logout</Link> 
+                  <Link to='/home' className="btn" id="hd-cl" onClick={() => this.lnkLogoutClick()}>Logout</Link> 
                   <span className="text-muted">|</span>
-                  <Link to='/myprofile' className="btn">My profile</Link> 
+                  <Link to='/myprofile' className="btn" id="hd-cl">My profile</Link> 
                   <span className="text-muted">|</span>
-                  <Link to='/myorders' className="btn">My orders</Link>
+                  <Link to='/myorders' className="btn"id="hd-cl">My orders</Link>
                   <span className="text-muted">|</span>
-                  <Link to='/mycart' className="btn ">
+                  <Link to='/mycart' className="btn"id="hd-cl">
                     My Cart <span className="badge bg-danger ms-1">{this.context.mycart.length}</span>
                   </Link>
               </div>
             )}
           </div>
 
-        
         </div>
       </div>
     );
   }
-
+  
   // event-handlers
   lnkLogoutClick() {
     this.context.setToken('');

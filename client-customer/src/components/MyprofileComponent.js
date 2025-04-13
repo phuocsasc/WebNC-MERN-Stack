@@ -21,34 +21,34 @@ class Myprofile extends Component {
     return (
       <div className="container form-profile-top">
         <div className="card shadow p-4">
-          <h2 className="text-center mb-4">My Profile</h2>
+          <h2 id="hd-cl" className="text-center mb-4">My Profile</h2>
           <form>
             <div className="mb-3">
-              <label className="form-label">Username</label>
+              <label id="hd-cl" className="form-label">Username</label>
               <input type="text" className="form-control" value={this.state.txtUsername} onChange={(e) => this.setState({ txtUsername: e.target.value })} />
             </div>
-            <div className="mb-3">
+            <div id="hd-cl" className="mb-3">
               <label className="form-label">Password</label>
               <input type="password" className="form-control" value={this.state.txtPassword} onChange={(e) => this.setState({ txtPassword: e.target.value })} />
             </div>
-            <div className="mb-3">
+            <div id="hd-cl" className="mb-3">
               <label className="form-label">Name</label>
               <input type="text" className="form-control" value={this.state.txtName} onChange={(e) => this.setState({ txtName: e.target.value })} />
             </div>
-            <div className="mb-3">
+            <div id="hd-cl" className="mb-3">
               <label className="form-label">Phone</label>
               <input type="tel" className="form-control" value={this.state.txtPhone} onChange={(e) => this.setState({ txtPhone: e.target.value })} />
             </div>
-            <div className="mb-3">
+            <div id="hd-cl" className="mb-3">
               <label className="form-label">Address</label>
               <input type="text" className="form-control" value={this.state.txtAddress} onChange={(e) => this.setState({ txtAddress: e.target.value })} />
             </div>
-            <div className="mb-3">
+            <div id="hd-cl" className="mb-3">
               <label className="form-label">Email</label>
               <input type="email" className="form-control" value={this.state.txtEmail} onChange={(e) => this.setState({ txtEmail: e.target.value })} />
             </div>
             <div className="text-center">
-              <button className="btn btn-primary" onClick={(e) => this.btnUpdateClick(e)}>Update</button>
+              <button id="bt-cl" className="btn btn-primary" onClick={(e) => this.btnUpdateClick(e)}>Update</button>
             </div>
           </form>
         </div>

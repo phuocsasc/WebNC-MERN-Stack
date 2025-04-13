@@ -19,7 +19,7 @@ class ProductDetail extends Component {
     if (!prod) return <div />;
 
     return (
-      <Container className="mt-5 form-product-top">
+      <Container className="container d-flex flex-column form-profile-top align-items-center vh-100">
         <Row className="justify-content-center">
           <Col md={8} lg={6}>
             <Card className="shadow-lg border-0">
@@ -33,11 +33,11 @@ class ProductDetail extends Component {
                 </Col>
                 <Col md={6}>
                   <Card.Body>
-                    <Card.Title className="fw-bold text-primary">{prod.name}</Card.Title>
+                    <Card.Title id="hd-cl" className="fw-bold">{prod.name}</Card.Title>
                     <Card.Text>
                       <strong>ID:</strong> {prod._id} <br />
                       <strong>Category:</strong> {prod.category.name} <br />
-                      <strong>Price:</strong> ${prod.price}
+                      <strong >Price:</strong> ${prod.price}
                     </Card.Text>
                     <Form>
                       <Form.Group controlId="quantity">
@@ -50,7 +50,7 @@ class ProductDetail extends Component {
                           onChange={(e) => this.setState({ txtQuantity: e.target.value })}
                         />
                       </Form.Group>
-                      <Button variant="primary" className="mt-3 w-100" onClick={(e) => this.btnAdd2CartClick(e)}>
+                      <Button id="bt-cl" className="mt-3 w-100" onClick={(e) => this.btnAdd2CartClick(e)}>
                         ADD TO CART
                       </Button>
                     </Form>
@@ -69,17 +69,21 @@ class ProductDetail extends Component {
   }
   // event-handlers
   btnAdd2CartClick(e) {
-    e.preventDefault(); // Dùng để ngăn trình duyệt tải lại trang khi người dùng bấm nút.
-    const product = this.state.product; // Lấy sản phẩm đang hiển thị.
-    const quantity = parseInt(this.state.txtQuantity); // Chuyển đổi số lượng từ chuỗi (txtQuantity) sang số nguyên.
-    if (quantity) { // Kiểm tra số lượng có hợp lệ không
-      const mycart = this.context.mycart; // lấy giỏ hàng ra lại từ context global của React cụ thể là file MyProvider.js
-      const index = mycart.findIndex(x => x.product._id === product._id); // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-      // Duyệt danh sách giỏ hàng (mycart) để tìm sản phẩm có cùng _id.
-      // Nếu sản phẩm đã có trong giỏ hàng, index sẽ trả về vị trí của nó. 0 1 2 ...
-      if (index === -1) { // Nếu chưa có sản phẩm trong giỏ hàng
-        const newItem = { product: product, quantity: quantity }; // tạo một object newItem chứa: Thông tin sản phẩm, Số lượng sản phẩm
-        mycart.push(newItem); 
+    e.preventDefault();
+    const customer = this.context.customer;
+    if (!customer) {
+      alert('You must login first!');
+      this.props.navigate('/login'); 
+      return;
+    }
+    const product = this.state.product; // Lấy thông tin sản phẩm hiện tại từ state 
+    const quantity = parseInt(this.state.txtQuantity); // lấy số lượng cần mua từ state
+    if (quantity) {
+      const mycart = this.context.mycart;
+      const index = mycart.findIndex(x => x.product._id === product._id); // check if the _id exists in mycart
+      if (index === -1) { // Nếu sản phẩm chưa có trong giỏ (index === -1) → thêm mới.
+        const newItem = { product: product, quantity: quantity };
+        mycart.push(newItem);
       } else { // increasing the quantity
         mycart[index].quantity += quantity;
       }

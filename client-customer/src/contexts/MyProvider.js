@@ -6,9 +6,9 @@ class MyProvider extends Component {
     super(props);
     this.state = { // global state
       // variables
-      token: '',
-      customer: null,
-      mycart: [],
+      token: '', // Token đăng nhập
+      customer: null, // Thông tin khách hàng
+      mycart: [], // Giỏ hàng
       // functions
       setToken: this.setToken,
       setCustomer: this.setCustomer,
@@ -21,7 +21,7 @@ class MyProvider extends Component {
   setCustomer = (value) => {
     this.setState({ customer: value });
   }
-  setMycart = (value) => { // Hàm cập nhật giỏ hàng
+  setMycart = (value) => {
     this.setState({ mycart: value });
   }
   render() {

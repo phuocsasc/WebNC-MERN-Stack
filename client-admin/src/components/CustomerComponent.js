@@ -48,10 +48,10 @@ class Customer extends Component {
 
     return (
       <div className="content">
-        <h2 className="text-2xl font-bold text-center ">Customer List</h2>
+        <h2 id="hd-cl" className="text-2xl font-bold text-center">CUSTOMER LIST</h2>
         <div className="overflow-x-auto">
           <table className="w-full border rounded-lg shadow-md">
-            <thead className="bg-gray-200">
+            <thead className="bg-gray-200" id="table-hd">
               <tr>
                 <th className="p-3">ID</th>
                 <th className="p-3">Username</th>
@@ -69,18 +69,18 @@ class Customer extends Component {
         </div>
         {this.state.orders.length > 0 && (
           <div className="mt-5">
-            <h2 className="text-2xl font-bold text-center">Order List</h2>
+            <h2 className="text-2xl font-bold text-center">ORDER LIST</h2>
             <div className="overflow-x-auto">
               <table className="w-full border rounded-lg shadow-md">
                 <thead className="bg-gray-200">
                   <tr>
-                    <th className="p-3">ID</th>
-                    <th className="p-3">Creation Date</th>
-                    <th className="p-3">Customer Name</th>
-                    <th className="p-3">Phone</th>
-                    <th className="p-3">Address</th>
-                    <th className="p-3">Total</th>
-                    <th className="p-3">Status</th>
+                    <th id="bt-cl" className="p-3">ID</th>
+                    <th id="bt-cl" className="p-3">Creation Date</th>
+                    <th id="bt-cl" className="p-3">Customer Name</th>
+                    <th id="bt-cl" className="p-3">Phone</th>
+                    <th id="bt-cl" className="p-3">Address</th>
+                    <th id="bt-cl" className="p-3">Total</th>
+                    <th id="bt-cl" className="p-3">Status</th>
                   </tr>
                 </thead>
                 <tbody>{orders}</tbody>

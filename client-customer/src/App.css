@@ -31,7 +31,6 @@
 .img-thumbnail{
   width: 70px;
 }
-
 .text-start {
   text-align: right !important;
 }
@@ -140,3 +139,35 @@ tr:not(:first-child):hover.datatable {
   background-color: #dcfcfc;
   cursor: pointer;
 }
+/* LOGIN */
+#hd-cl{
+  color: #002250;
+  font-weight: bold;
+}
+#bt-cl{
+  color: white;
+  background-color: #002250;
+  border-color: #002250;
+}
+
+/* ORDER LIST */
+#tb-or-lt{
+  color: rgb(255, 255, 255);
+  background-color: #002250;
+}
+#bt-view-dt{
+  color: white;
+  background-color: #002250;
+}
+#bt-view-dt:hover{
+  background-color: #003380 !important; /* Màu khi hover */
+  transform: scale(1.05); /* Phóng to nhẹ */
+}
+#price-cl{
+  color: #9b694b;
+}
+
+
+
+
+

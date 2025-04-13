@@ -28,19 +28,19 @@ class Myorders extends Component {
     ));
 
     return (
-      <div className="container mt-4 form-profile-top">
-        <h2 className="text-center mb-4">Order List</h2>
+      <div className="container d-flex flex-column form-profile-top align-items-stretch vh-100">
+        <h2 className="text-center mb-4">ORDER LIST</h2>
         <div className="table-responsive">
-          <table className="table table-bordered table-hover text-center">
-            <thead className="table-dark">
+          <table className="table table-bordered text-center">
+            <thead  className="table">
               <tr>
-                <th>ID</th>
-                <th>Creation Date</th>
-                <th>Customer Name</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Total</th>
-                <th>Status</th>
+                <th id="tb-or-lt">ID</th>
+                <th id="tb-or-lt">Creation Date</th>
+                <th id="tb-or-lt">Customer Name</th>
+                <th id="tb-or-lt">Phone</th>
+                <th id="tb-or-lt">Address</th>
+                <th id="tb-or-lt">Total</th>
+                <th id="tb-or-lt">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -57,21 +57,21 @@ class Myorders extends Component {
     const { order } = this.state;
     return (
       <div className="card mt-4">
-        <div className="card-header bg-primary text-white">
-          <h4 className="mb-0">Order Details</h4>
+        <div id="tb-or-lt" className="card-header">
+          <h4 className="mb-0">ORDER DETAIL</h4>
         </div>
         <div className="card-body">
           <div className="table-responsive">
             <table className="table table-striped text-center">
-              <thead className="table-secondary">
+              <thead className="table">
                 <tr>
-                  <th>#</th>
-                  <th>Product ID</th>
-                  <th>Name</th>
-                  <th>Image</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Amount</th>
+                  <th id="hd-cl">#</th>
+                  <th id="hd-cl">Product ID</th>
+                  <th id="hd-cl">Name</th>
+                  <th id="hd-cl"v>Image</th>
+                  <th id="hd-cl">Price</th>
+                  <th id="hd-cl">Quantity</th>
+                  <th id="hd-cl">Amount</th>
                 </tr>
               </thead>
               <tbody>

@@ -11,3 +11,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* icon call */
+.fixed-contact {
+  position: fixed;
+  bottom: 100px;
+  left: 20px;
+  z-index: 9999;
+  width: 80px;
+  height: 80px;
+}
+
+.fixed-contact img {
+  width: 100%;
+  height: auto;
+  animation: shake 1s infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(0px, 0px); }
+  25% { transform: translate(2px, -15px); }
+  50% { transform: translate(-15px, 2px); }
+  75% { transform: translate(2px, 15px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+
+#footer-css {
+  margin-top: 20px !important;
+  color: #e5e8eb;
+  background-color:#002250;;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

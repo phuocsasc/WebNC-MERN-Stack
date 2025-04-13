@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import MyContext from '../contexts/MyContext';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 
+//Khi bấm nút Product trên thanh Menu thì class này (có nghĩa là file ProductDetailComponent.js được hoạt động)
+// sẽ được render lên giao diện cho admin thấy
 class ProductDetail extends Component {
   static contextType = MyContext;
 
@@ -19,17 +21,17 @@ class ProductDetail extends Component {
   }
 
   componentDidMount() {
-    this.apiGetCategories();
+    this.apiGetCategories(); // <-- Gọi API khi component được render lần đầu
   }
-
+	// Kiểm tra props.item có thay đổi không? Trong componentDidUpdate(prevProps)
   componentDidUpdate(prevProps) {
-    if (this.props.item !== prevProps.item) {
-      this.setState({
-        txtID: this.props.item._id,
-        txtName: this.props.item.name,
+    if (this.props.item !== prevProps.item) { //Kiểm tra xem giá trị item từ props hiện tại (this.props.item) có khác với giá trị trước đó (prevProps.item) không.
+      this.setState({ //Nếu khác nhau → props item đã thay đổi → cần cập nhật state.
+        txtID: this.props.item._id, //Lấy _id của item.
+        txtName: this.props.item.name, //Lấy name của item.
         txtPrice: this.props.item.price,
         cmbCategory: this.props.item.category._id,
-        imgProduct: `data:image/jpg;base64,${this.props.item.image}`,
+        imgProduct: `data:image/jpg;base64,${this.props.item.image}`, //Tạo URL ảnh dạng base64 từ
       });
     }
   }
@@ -44,7 +46,8 @@ class ProductDetail extends Component {
       reader.readAsDataURL(file);
     }
   };
-
+  //Call API: /api/admin/categories → set state categories[]
+  //Hàm apiGetCategories:
   apiGetCategories = () => {
     const config = { headers: { 'x-access-token': this.context.token } };
     axios.get('/api/admin/categories', config).then((res) => {
@@ -131,8 +134,8 @@ class ProductDetail extends Component {
     return (
       <Container className="mt-5">
         <Card>
-          <Card.Header className="text-center bg-primary text-white">
-            <h3>Product Detail</h3>
+          <Card.Header className="text-center text-white" id="card-product-detail">
+            <h3>PRODUCT DETAIL</h3>
           </Card.Header>
           <Card.Body>
             <Form>
@@ -178,9 +181,9 @@ class ProductDetail extends Component {
               
 
               <div className="d-flex justify-content-around">
-                <Button variant="success" onClick={this.btnAddClick}>Add New</Button>
-                <Button variant="warning" onClick={this.btnUpdateClick}>Update</Button>
-                <Button variant="danger" onClick={this.btnDeleteClick}>Delete</Button>
+                <Button id="btn-select" onClick={this.btnAddClick}><i className="fas fa-plus"></i> Add New</Button>
+                <Button id="btn-select" onClick={this.btnUpdateClick}><i className="fas fa-edit"></i> Update</Button>
+                <Button id="btn-select"onClick={this.btnDeleteClick}><i className="fas fa-trash"></i> Delete</Button>
               </div>
 
               <div className="text-center mb-3 mt-3">

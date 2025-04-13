@@ -13,7 +13,7 @@ class Login extends Component {
       errorMessage: '' // Lưu lỗi khi đăng nhập thất bại
     };
   }
-
+// Nút bấm Login
   btnLoginClick = (e) => {
     e.preventDefault();
     const { txtUsername, txtPassword } = this.state;
@@ -24,7 +24,7 @@ class Login extends Component {
       this.setState({ errorMessage: 'Please enter both username and password' });
     }
   };
-
+// Gửi đi Username & Password từ form Login lên Database để kiểm tra 
   apiLogin = (account) => {
     axios.post('/api/admin/login', account).then((res) => {
       const result = res.data;
@@ -36,21 +36,22 @@ class Login extends Component {
       }
     });
   };
-
+// Giao diện
   render() {
     if (this.context.token === '') {
       return (
+        //Giao diện đăng nhập
         <div className="container d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
           <div className="col-md-4">
             <div className="card shadow">
               <div className="card-body">
-                <h2 className="text-center text-primary">ADMIN LOGIN</h2>
+                <h2 id="hd-cl" className="text-center">ADMIN LOGIN</h2>
 
                 {/* Hiển thị lỗi nếu có */}
                 {this.state.errorMessage && (
                   <div className="alert alert-danger text-center">{this.state.errorMessage}</div>
                 )}
-
+                {/* Giao diện form nhập username */}
                 <form>
                   <div className="mb-3">
                     <label className="form-label">Username</label>
@@ -62,7 +63,7 @@ class Login extends Component {
                       onChange={(e) => this.setState({ txtUsername: e.target.value })}
                     />
                   </div>
-
+                {/* Giao diện form nhập password */}
                   <div className="mb-3">
                     <label className="form-label">Password</label>
                     <input
@@ -73,8 +74,8 @@ class Login extends Component {
                       onChange={(e) => this.setState({ txtPassword: e.target.value })}
                     />
                   </div>
-
-                  <button className="btn btn-primary w-100" onClick={this.btnLoginClick}>
+                {/* Giao diện nút login*/}
+                  <button id="bt-cl" className="btn w-100" onClick={this.btnLoginClick}>
                     LOGIN
                   </button>
                 </form>

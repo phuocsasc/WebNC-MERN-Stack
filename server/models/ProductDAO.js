@@ -37,16 +37,16 @@ const ProductDAO = {
   },
   async selectTopNew(top) {
     const query = {};
-    const mysort = { cdate: -1 }; // descending
+    const mysort = { cdate: -1 }; // descending Sắp xếp theo cdate giảm dần (mới nhất lên đầu).
     const products = await Models.Product.find(query).sort(mysort).limit(top).exec();
     return products;
   },
   async selectTopHot(top) {
     const items = await Models.Order.aggregate([
       { $match: { status: 'APPROVED' } },
-      { $unwind: '$items' },
+      { $unwind: '$items' }, // Tách từng sản phẩm trong mảng items thành dòng riêng.
       { $group: { _id: '$items.product._id', sum: { $sum: '$items.quantity' } } },
-      { $sort: { sum: -1 } }, // descending
+      { $sort: { sum: -1 } }, // descending Sắp xếp theo tổng số lượng giảm dần (bán chạy nhất lên đầu).
       { $limit: top }
     ]).exec();
     var products = [];

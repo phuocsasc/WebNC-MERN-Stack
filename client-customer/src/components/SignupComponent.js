@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { Component } from 'react';
 
 class Signup extends Component {
-  // Khởi tạo state chứa thông tin đăng ký
   constructor(props) {
     super(props);
     this.state = {
@@ -17,8 +16,8 @@ class Signup extends Component {
   render() {
     return (
       <div className="container d-flex justify-content-center align-items-center vh-100 form-top">
-        <div className="card shadow-lg p-4" style={{ maxWidth: '500px', width: '100%' }}>
-          <h2 className="text-center mb-4">CUSTOMER Sign Up</h2>
+        <div className="card shadow-lg p-4" style={{ maxWidth: '400px', width: '100%' }}>
+          <h2 id="hd-cl" className="text-center mb-4">CUSTOMER SIGN UP</h2>
           <form onSubmit={(e) => this.btnSignupClick(e)}>
             <div className="form-floating mb-3">
               <input type="text" className="form-control" placeholder="Username" value={this.state.txtUsername} onChange={(e) => this.setState({ txtUsername: e.target.value })} required />
@@ -44,7 +43,7 @@ class Signup extends Component {
               <input type="email" className="form-control" placeholder="Email" value={this.state.txtEmail} onChange={(e) => this.setState({ txtEmail: e.target.value })} required />
               <label>Email</label>
             </div>
-            <button type="submit" className="btn btn-primary w-100">Sign Up</button>
+            <button id="bt-cl" type="submit" className="btn w-100">Sign Up</button>
           </form>
         </div>
       </div>
@@ -52,7 +51,7 @@ class Signup extends Component {
   }
   // event-handlers
   btnSignupClick(e) {
-    e.preventDefault(); // Ngăn form tải lại trang
+    e.preventDefault();
     const username = this.state.txtUsername;
     const password = this.state.txtPassword;
     const name = this.state.txtName;
@@ -61,7 +60,7 @@ class Signup extends Component {
     const email = this.state.txtEmail;
     if (username && password && name && phone && address && email) {
       const account = { username: username, password: password, name: name, phone: phone, address: address, email: email };
-      this.apiSignup(account); // Gọi API đăng ký
+      this.apiSignup(account);
     } else {
       alert('Please input username and password and name and phone and address and email');
     }

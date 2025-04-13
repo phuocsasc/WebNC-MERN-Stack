@@ -9,15 +9,15 @@ class Menu extends Component {
       constructor(props) {
             super(props);
             this.state = {
-                  categories: [],
-                  txtKeyword: '',
+                  categories: [], // Lưu danh sách danh mục từ backend
+                  txtKeyword: '', // Dữ liệu người dùng nhập trong ô tìm kiếm
                   activeCategory: '' // Lưu danh mục đang được chọn
             };
       }
 
       // Xử lý click vào danh mục
       handleCategoryClick(categoryId) {
-            this.setState({ activeCategory: categoryId });
+            this.setState({ activeCategory: categoryId }); // Hàm này sẽ cập nhật activeCategory để css
       }
 
       render() {
@@ -48,13 +48,12 @@ class Menu extends Component {
 
                               {/* Menu items */}
                               <div className="collapse navbar-collapse" id="navbarNav">
-                                    <ul className="navbar-nav">
+                                    <ul id="hd-cl" className="navbar-nav">
                                           <li className="nav-item">
                                                 <Link
                                                       to="/"
-                                                      className={`nav-link ${this.state.activeCategory === 'home' ? 'active' : ''}`}
-                                                      onClick={() => this.handleCategoryClick('home')}
-                                                >
+                                                      id="hd-cl" className={`nav-link ${this.state.activeCategory === 'home' ? 'active' : ''}`}
+                                                      onClick={() => this.handleCategoryClick('home')}>
                                                       Home
                                                 </Link>
                                           </li>
@@ -71,11 +70,12 @@ class Menu extends Component {
                                                 onChange={(e) => this.setState({ txtKeyword: e.target.value })}
                                           />
                                           <button
-                                                className="btn btn-outline-success"
+                                                id="bt-cl"
+                                                className="btn btn-outline"
                                                 type="submit"
-                                                onClick={(e) => this.btnSearchClick(e)}
-                                          >
-                                                SEARCH
+                                                onClick={(e) => this.btnSearchClick(e)} 
+                                          > 
+                                                Search
                                           </button>
                                     </form>
                               </div>
@@ -90,7 +90,7 @@ class Menu extends Component {
             this.props.navigate('/product/search/' + this.state.txtKeyword);
       }
 
-      componentDidMount() {
+      componentDidMount() { // Khi component được render lần đầu, sẽ gọi API để lấy danh mục.
             this.apiGetCategories();
       }
 

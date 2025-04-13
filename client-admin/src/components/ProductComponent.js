@@ -52,7 +52,7 @@ class Product extends Component {
       pages.push(
         <button
           key={i}
-          className={`btn btn-sm mx-1 ${i === curPage ? 'btn-primary' : 'btn-light'}`}
+          className={`btn btn-sm mx-1 ${i === curPage ? 'btn-danger' : 'btn-light'}`}
           onClick={() => this.lnkPageClick(i)}
         >
           {i}
@@ -100,9 +100,9 @@ class Product extends Component {
         <div className="row">
           {/* Bảng danh sách sản phẩm */}
           <div className="col-md-8">
-            <h2 className="text-center">Product List</h2>
+            <h2 id="hd-cl" className="text-center">PRODUCT LIST</h2>
             <table className="table table-striped table-hover table-bordered">
-              <thead className="table-dark">
+              <thead className="table" id="table-hd">
                 <tr>
                   <th>ID</th>
                   <th>Name</th>

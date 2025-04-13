@@ -29,10 +29,6 @@
   cursor: pointer;
 }
 
-
-
-
-
 /* ============================ End =============================== */
 
 div.inline {
@@ -130,4 +126,67 @@ tr:not(:first-child):nth-child(odd).datatable {
 tr:not(:first-child):hover.datatable {
   background-color: #dcfcfc;
   cursor: pointer;
+}
+
+/* CategoryComponent */
+/* Các nút */
+#button-click-categories {
+  background-color: #002250 !important; /* Màu nền */
+  border-color: #002250 !important; /* Màu viền */
+  color: white !important; /* Màu chữ */
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px; /* Bo góc */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Khoảng cách giữa icon và text */
+  transition: all 0.3s ease;
+}
+
+#button-click-categories:hover {
+  background-color: #003380 !important; /* Màu khi hover */
+  transform: scale(1.05); /* Phóng to nhẹ */
+}
+#title-category-detail{
+  color: #002250;
+}
+/* Product List */
+#table-hd th {
+  background-color: #002250;
+  color: #ffffff;
+}
+/* Bo góc toàn bảng */
+table.table {
+  border-radius: 5px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+/* Product Detail */
+#card-product-detail{
+  background-color: #002250;
+}
+#btn-select{
+  background-color: #002250;
+  border-color: #002250;
+}
+#btn-select:hover{
+  background-color: #003380 !important; /* Màu khi hover */
+  transform: scale(1.05); /* Phóng to nhẹ */
+}
+/* Order List */
+#order-list{
+  background-color: #002250;
+  color: white;
+}
+#order-list2{
+  background-color: #002250;
+}
+#hd-cl{
+  color: #002250;
+}
+#bt-cl{
+  background-color: #002250;
+  color: #ffffff;
 }

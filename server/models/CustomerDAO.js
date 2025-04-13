@@ -40,14 +40,14 @@ const CustomerDAO = {
     return customer;
   },
 
-  // Thêm phương thức selectByEmail
+  // 🆕 Thêm phương thức selectByEmail
   async selectByEmail(email) {
     const customer = await Models.Customer.findOne({ email: email }).exec();
     return customer;
   },
 
 
-  //  Tạo token đặt lại mật khẩu (token sẽ hết hạn sau 1 giờ)
+  // 🆕 Tạo token đặt lại mật khẩu (token sẽ hết hạn sau 1 giờ)
   async createPasswordResetToken(email) {
     const customer = await this.selectByEmail(email);
     if (!customer) return null;
@@ -71,7 +71,7 @@ const CustomerDAO = {
   },
 
 
-  //  Xác thực token và cập nhật mật khẩu mới
+  // 🆕 Xác thực token và cập nhật mật khẩu mới
   async resetPassword(token, newPassword) {
     if (!token) {
       console.error("⚠️ Token không hợp lệ hoặc bị thiếu!");
@@ -91,7 +91,7 @@ const CustomerDAO = {
       return null;
     }
 
-    //  Cập nhật mật khẩu mới
+    // ✅ Cập nhật mật khẩu mới
     customer.password = newPassword;
     customer.resetToken = undefined;
     customer.tokenExpiry = undefined;
@@ -100,7 +100,7 @@ const CustomerDAO = {
     return customer;
   },
 
-  //  Lấy resetToken từ database dựa vào email
+  // 🆕 Lấy resetToken từ database dựa vào email
   async selectResetToken(email) {
     const customer = await Models.Customer.findOne(
       { email: email },
@@ -113,5 +113,10 @@ const CustomerDAO = {
     }
     return customer.resetToken; // Trả về resetToken
   }
+
+
+
+
+
 };
 module.exports = CustomerDAO;

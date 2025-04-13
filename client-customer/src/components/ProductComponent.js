@@ -4,24 +4,24 @@ import { Link } from 'react-router-dom';
 import withRouter from '../utils/withRouter';
 
 class Product extends Component {
-  constructor(props) { // hàm khởi tạo của component, đang nhận props từ bên ngoài.
-    super(props); // Kế thừa constructor của React.Component. Cho phép ta sử dụng this.props
-    this.state = { // Khởi tạo state là nơi lưu dữ liệu nội bộ của component, với một mảng products rỗng.
+  constructor(props) { // props là đối tượng chứa các thuộc tính được truyền vào component từ cha
+    super(props);
+    this.state = {
       products: []
     };
   }
   render() {
-    const prods = this.state.products.map((item) => { // lấy danh sách sản phẩm từ state. map qua từng sản phẩm
-      return ( // React yêu cầu mỗi phần tử trong list phải có key duy nhất để tối ưu render lại.
-        <div key={item._id} className="col-md-4 mb-4"> 
+    const prods = this.state.products.map((item) => {
+      return (
+        <div key={item._id} className="col-md-4 mb-4">
           <div className="card h-100 shadow-sm">
             <Link to={'/product/' + item._id}>
               <img src={"data:image/jpg;base64," + item.image} className="card-img-top" alt={item.name} />
             </Link>
             <div className="card-body text-center">
               <h5 className="card-title">{item.name}</h5>
-              <p className="card-text text-danger fw-bold">Price: ${item.price}</p>
-              <Link to={'/product/' + item._id} className="btn btn-primary">View Details</Link>
+              <p id="price-cl" className="card-text fw-bold">Price: ${item.price}</p>
+              <Link to={'/product/' + item._id} id="bt-view-dt" className="btn">View Details</Link>
             </div>
           </div>
         </div>
@@ -29,33 +29,33 @@ class Product extends Component {
     });
     return (
       <div className="container form-product-top">
-        <h2 className="text-center my-4">Product List</h2>
+        <h2 id="hd-cl" className="text-center my-4">PRODUCT LIST</h2>
         <div className="row">
           {prods.length > 0 ? prods : <p className="text-center">No products available</p>}
         </div>
       </div>
     );
   }
-  componentDidMount() { // first: /product/...
-    const params = this.props.params;
-    if (params.cid) {
-      this.apiGetProductsByCatID(params.cid);
-    } else if (params.keyword) {
-      this.apiGetProductsByKeyword(params.keyword);
+  componentDidMount() { // Chạy khi component vừa được gắn vào DOM
+    const params = this.props.params; // component Product mới được tạo
+    if (params.cid) { // kiểm tra URL có cid ko (category ID)
+      this.apiGetProductsByCatID(params.cid); // gọi API lấy sản phẩm theo danh mục với ID đó
+    } else if (params.keyword) { // kiểm tra URL có keyword ko
+      this.apiGetProductsByKeyword(params.keyword); // gọi API tìm sản phẩm theo từ khóa.
     }
   }
-  componentDidUpdate(prevProps) { // changed: /product/...
+  componentDidUpdate(prevProps) { // Chạy khi props thay đổi
     const params = this.props.params;
-    if (params.cid && params.cid !== prevProps.params.cid) {
+    if (params.cid && params.cid !== prevProps.params.cid) { // So sánh params.cid mới và cũ phải khác nhau
       this.apiGetProductsByCatID(params.cid);
     } else if (params.keyword && params.keyword !== prevProps.params.keyword) {
       this.apiGetProductsByKeyword(params.keyword);
     }
   }
   // apis
-  apiGetProductsByCatID(cid) {
-    axios.get('/api/customer/products/category/' + cid).then((res) => {
-      const result = res.data;
+  apiGetProductsByCatID(cid) { // Gửi request đến backend để lấy các sản phẩm theo category id.
+    axios.get('/api/customer/products/category/' + cid).then((res) => { // Khi server trả về dữ liệu thành công, hàm then được gọi.
+      const result = res.data; // Dữ liệu thực sự trả về từ server
       this.setState({ products: result });
     });
   }

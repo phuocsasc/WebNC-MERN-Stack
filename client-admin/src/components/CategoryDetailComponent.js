@@ -14,7 +14,7 @@ class CategoryDetail extends Component {
   render() {
     return (
       <div className="card rounded shadow-sm mt-3 p-3 ">
-        <h3 className="text-center text-primary">CATEGORY DETAIL</h3>
+        <h3 className="text-center" id="title-category-detail">CATEGORY DETAIL</h3>
 
         <form >
           <div className="mb-3">
@@ -38,10 +38,14 @@ class CategoryDetail extends Component {
           </div>
 
           <div className="d-flex justify-content-around">
-            <button className="btn btn-success" onClick={(e) => this.btnAddClick(e)}>ADD NEW</button>
-            <button className="btn btn-warning" onClick={(e) => this.btnUpdateClick(e)}>UPDATE</button>
-            <button className="btn btn-danger" onClick={(e) => this.btnDeleteClick(e)}>DELETE</button>
-          </div>
+            <button className="btn" id="button-click-categories" onClick={(e) => this.btnAddClick(e)}>
+                <i className="fas fa-plus"></i> ADD NEW</button>
+            <button className="btn" id="button-click-categories" onClick={(e) => this.btnUpdateClick(e)}>
+                <i className="fas fa-edit"></i> UPDATE</button>
+            <button className="btn" id="button-click-categories" onClick={(e) => this.btnDeleteClick(e)}>
+                <i className="fas fa-trash"></i> DELETE</button>
+</div>
+
         </form>
       </div>
     );

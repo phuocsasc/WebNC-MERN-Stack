@@ -19,7 +19,7 @@ class Login extends Component {
     return (
       <div className="container d-flex justify-content-center align-items-center vh-100">
         <div className="card shadow-lg p-4" style={{ width: '400px' }}>
-          <h2 className="text-center mb-4">CUSTOMER LOGIN</h2>
+          <h2 id="hd-cl" className="text-center mb-4">CUSTOMER LOGIN</h2>
           <form>
             {/* Username */}
             <div className="mb-3">
@@ -48,6 +48,7 @@ class Login extends Component {
             {/* Login Button */}
             <div className="d-grid">
               <button
+                id="bt-cl"
                 className="btn btn-primary"
                 type="submit"
                 onClick={(e) => this.btnLoginClick(e)}
@@ -58,8 +59,8 @@ class Login extends Component {
           </form>
 
           {/* Forgot Password & Sign Up Links */}
-          <div className="text-center mt-3">
-            <Link to='/forgotpassword' className="text-decoration-none">Forgot Password?</Link>
+          <div  className="text-center mt-3">
+            <Link to='/forgotpassword' id="hd-cl" className="text-decoration-none">Forgot Password?</Link>
           </div>
         </div>
       </div>

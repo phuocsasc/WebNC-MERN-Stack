@@ -48,8 +48,10 @@ router.post('/signup', async function (req, res) {
     if (dbCust) {
       return res.json({ success: false, message: 'Exists username or email' });
     }
+
     const now = new Date().getTime(); // milliseconds
     const token = CryptoUtil.md5(now.toString());
+
     // Thêm resetToken và tokenExpiry vào newCust
     const newCust = {
       username,
@@ -138,7 +140,7 @@ router.get('/orders/customer/:cid', JwtUtil.checkToken, async function (req, res
   const orders = await OrderDAO.selectByCustID(_cid);
   res.json(orders);
 });
-///  Quên mật khẩu: Gửi email chứa link reset mật khẩu
+/// Quên mật khẩu: Gửi email chứa link reset mật khẩu
 router.post('/forgotpassword', async (req, res) => {
   const { email } = req.body;
   if (!email) {
@@ -146,34 +148,34 @@ router.post('/forgotpassword', async (req, res) => {
   }
 
   try {
-    //  Kiểm tra email có tồn tại không
+    // 🔍 Kiểm tra email có tồn tại không
     const user = await CustomerDAO.selectByEmail(email);
     if (!user) {
       return res.status(404).json({ error: "Email không tồn tại trong hệ thống!" });
     }
 
-    // Tạo token đặt lại mật khẩu
+    // 🔑 Tạo token đặt lại mật khẩu
     await CustomerDAO.createPasswordResetToken(email);
 
-    // Lấy lại token sau khi đã cập nhật trong DB
+    // 🔄 Lấy lại token sau khi đã cập nhật trong DB
     const resetToken = await CustomerDAO.selectResetToken(email);
     if (!resetToken) {
       return res.status(500).json({ error: "Không thể lấy token, vui lòng thử lại!" });
     }
 
-    // Gửi email với đường link reset
+    // 📨 Gửi email với đường link reset
     const resetLink = `http://localhost:3000/reset-password/${resetToken}`;
     await EmailResetPassUtil.send(email, resetLink);
 
     return res.json({ message: "Vui lòng kiểm tra email để đặt lại mật khẩu!" });
   } catch (err) {
-    console.error(" Lỗi khi gửi yêu cầu reset mật khẩu:", err);
+    console.error("❌ Lỗi khi gửi yêu cầu reset mật khẩu:", err);
     return res.status(500).json({ error: "Lỗi hệ thống, vui lòng thử lại!" });
   }
 });
 // Đặt lại mật khẩu: Xác minh token & cập nhật mật khẩu mới
 router.post("/reset-password", async (req, res) => {
-  console.log("🔹 Dữ liệu nhận được từ client:", req.body); //  Debug
+  console.log("🔹 Dữ liệu nhận được từ client:", req.body); // 🛠 Debug
 
   const { token, newPassword } = req.body;
   if (!token || !newPassword) {
@@ -192,5 +194,4 @@ router.post("/reset-password", async (req, res) => {
     return res.status(500).json({ error: "Lỗi máy chủ!" });
   }
 });
-
 module.exports = router;
