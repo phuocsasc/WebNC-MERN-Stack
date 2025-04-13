@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import MyContext from '../contexts/MyContext';
 import ProductDetail from './ProductDetailComponent';
 
+// 👉 Lấy API_URL từ biến môi trường
+const API_URL = process.env.REACT_APP_API_URL;
+
 class Product extends Component {
   static contextType = MyContext;
 
@@ -30,7 +33,7 @@ class Product extends Component {
 
   apiGetProducts(page) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get(`/api/admin/products?page=${page}`, config).then((res) => {
+    axios.get(`${API_URL}/api/admin/products?page=${page}`, config).then((res) => {
       const result = res.data;
       this.setState({
         products: result.products,

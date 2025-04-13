@@ -2,6 +2,9 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import MyContext from '../contexts/MyContext';
 
+// 👉 Lấy API_URL từ biến môi trường
+const API_URL = process.env.REACT_APP_API_URL;
+
 class Login extends Component {
   static contextType = MyContext; // using this.context to access global state
 
@@ -24,9 +27,10 @@ class Login extends Component {
       this.setState({ errorMessage: 'Please enter both username and password' });
     }
   };
-// Gửi đi Username & Password từ form Login lên Database để kiểm tra 
+
+  // Gửi đi Username & Password từ form Login lên Database để kiểm tra
   apiLogin = (account) => {
-    axios.post('/api/admin/login', account).then((res) => {
+    axios.post(`${API_URL}/api/admin/login`, account).then((res) => {
       const result = res.data;
       if (result.success === true) {
         this.context.setToken(result.token);
@@ -34,24 +38,26 @@ class Login extends Component {
       } else {
         this.setState({ errorMessage: result.message });
       }
+    }).catch((error) => {
+      this.setState({ errorMessage: 'Login failed. Please try again later.' });
+      console.error('Login error:', error);
     });
   };
-// Giao diện
+
+  // Giao diện
   render() {
     if (this.context.token === '') {
       return (
-        //Giao diện đăng nhập
         <div className="container d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
           <div className="col-md-4">
             <div className="card shadow">
               <div className="card-body">
                 <h2 id="hd-cl" className="text-center">ADMIN LOGIN</h2>
 
-                {/* Hiển thị lỗi nếu có */}
                 {this.state.errorMessage && (
                   <div className="alert alert-danger text-center">{this.state.errorMessage}</div>
                 )}
-                {/* Giao diện form nhập username */}
+
                 <form>
                   <div className="mb-3">
                     <label className="form-label">Username</label>
@@ -63,7 +69,6 @@ class Login extends Component {
                       onChange={(e) => this.setState({ txtUsername: e.target.value })}
                     />
                   </div>
-                {/* Giao diện form nhập password */}
                   <div className="mb-3">
                     <label className="form-label">Password</label>
                     <input
@@ -74,7 +79,6 @@ class Login extends Component {
                       onChange={(e) => this.setState({ txtPassword: e.target.value })}
                     />
                   </div>
-                {/* Giao diện nút login*/}
                   <button id="bt-cl" className="btn w-100" onClick={this.btnLoginClick}>
                     LOGIN
                   </button>

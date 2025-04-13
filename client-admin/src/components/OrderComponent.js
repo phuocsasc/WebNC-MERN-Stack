@@ -5,6 +5,8 @@ import { CheckCircle, XCircle, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import '../styles/order.css';
 
+// 👉 Lấy API_URL từ biến môi trường
+const API_URL = process.env.REACT_APP_API_URL;
 
 class Order extends Component {
   static contextType = MyContext;
@@ -157,7 +159,7 @@ class Order extends Component {
 
   apiGetOrders() {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get('/api/admin/orders', config).then((res) => {
+    axios.get(`${API_URL}/api/admin/orders`, config).then((res) => {
       this.setState({ orders: res.data });
     });
   }
@@ -165,7 +167,7 @@ class Order extends Component {
   apiPutOrderStatus(id, status) {
     const body = { status };
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.put(`/api/admin/orders/status/${id}`, body, config).then((res) => {
+    axios.put(`${API_URL}/api/admin/orders/status/${id}`, body, config).then((res) => {
       if (res.data) {
         this.apiGetOrders();
       } else {

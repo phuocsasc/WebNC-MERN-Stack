@@ -2,6 +2,9 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import MyContext from '../contexts/MyContext';
 
+// 👉 Lấy API_URL từ biến môi trường
+const API_URL = process.env.REACT_APP_API_URL;
+
 class CategoryDetail extends Component {
   static contextType = MyContext; // using this.context to access global state
   constructor(props) {
@@ -91,7 +94,7 @@ class CategoryDetail extends Component {
   // apis
   apiPostCategory(cate) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.post('/api/admin/categories', cate, config).then((res) => {
+    axios.post(`${API_URL}/api/admin/categories`, cate, config).then((res) => {
       const result = res.data;
       if (result) {
         alert('Good job!');
@@ -103,7 +106,7 @@ class CategoryDetail extends Component {
   }
   apiPutCategory(id, cate) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.put('/api/admin/categories/' + id, cate, config).then((res) => {
+    axios.put(`${API_URL}/api/admin/categories/` + id, cate, config).then((res) => {
       const result = res.data;
       if (result) {
         alert('Good job!');
@@ -115,7 +118,7 @@ class CategoryDetail extends Component {
   }
   apiDeleteCategory(id) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.delete('/api/admin/categories/' + id, config).then((res) => {
+    axios.delete(`${API_URL}/api/admin/categories/` + id, config).then((res) => {
       const result = res.data;
       if (result) {
         alert('Good job!');
@@ -127,7 +130,7 @@ class CategoryDetail extends Component {
   }
   apiGetCategories() {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get('/api/admin/categories', config).then((res) => {
+    axios.get(`${API_URL}/api/admin/categories`, config).then((res) => {
       const result = res.data;
       this.props.updateCategories(result);
     });

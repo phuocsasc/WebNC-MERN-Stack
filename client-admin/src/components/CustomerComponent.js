@@ -2,6 +2,9 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import MyContext from '../contexts/MyContext';
 
+// 👉 Lấy API_URL từ biến môi trường
+const API_URL = process.env.REACT_APP_API_URL;
+
 class Customer extends Component {
   static contextType = MyContext;
   constructor(props) {
@@ -146,20 +149,20 @@ class Customer extends Component {
 
   apiGetCustomers() {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get('/api/admin/customers', config).then((res) => {
+    axios.get(`${API_URL}/api/admin/customers`, config).then((res) => {
       this.setState({ customers: res.data });
     });
   }
   apiGetOrdersByCustID(cid) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get('/api/admin/orders/customer/' + cid, config).then((res) => {
+    axios.get(`${API_URL}/api/admin/orders/customer/` + cid, config).then((res) => {
       this.setState({ orders: res.data });
     });
   }
   apiPutCustomerDeactive(id, token) {
     const body = { token: token };
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.put('/api/admin/customers/deactive/' + id, body, config).then((res) => {
+    axios.put(`${API_URL}/api/admin/customers/deactive/` + id, body, config).then((res) => {
       if (res.data) {
         this.apiGetCustomers();
       } else {
@@ -169,7 +172,7 @@ class Customer extends Component {
   }
   apiGetCustomerSendmail(id) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get('/api/admin/customers/sendmail/' + id, config).then((res) => {
+    axios.get(`${API_URL}/api/admin/customers/sendmail/` + id, config).then((res) => {
       alert(res.data.message);
     });
   }

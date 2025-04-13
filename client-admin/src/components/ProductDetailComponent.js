@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import MyContext from '../contexts/MyContext';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 
+// 👉 Lấy API_URL từ biến môi trường
+const API_URL = process.env.REACT_APP_API_URL;
+
 //Khi bấm nút Product trên thanh Menu thì class này (có nghĩa là file ProductDetailComponent.js được hoạt động)
 // sẽ được render lên giao diện cho admin thấy
 class ProductDetail extends Component {
@@ -50,18 +53,18 @@ class ProductDetail extends Component {
   //Hàm apiGetCategories:
   apiGetCategories = () => {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get('/api/admin/categories', config).then((res) => {
+    axios.get(`${API_URL}/api/admin/categories`, config).then((res) => {
       this.setState({ categories: res.data });
     });
   };
 
   apiGetProducts = () => {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get(`/api/admin/products?page=${this.props.curPage}`, config).then((res) => {
+    axios.get(`${API_URL}/api/admin/products?page=${this.props.curPage}`, config).then((res) => {
       if (res.data.products.length !== 0) {
         this.props.updateProducts(res.data.products, res.data.noPages);
       } else {
-        axios.get(`/api/admin/products?page=${this.props.curPage - 1}`, config).then((res) => {
+        axios.get(`${API_URL}/api/admin/products?page=${this.props.curPage - 1}`, config).then((res) => {
           this.props.updateProducts(res.data.products, res.data.noPages);
         });
       }
@@ -70,7 +73,7 @@ class ProductDetail extends Component {
 
   apiPostProduct = (prod) => {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.post('/api/admin/products', prod, config).then((res) => {
+    axios.post(`${API_URL}/api/admin/products`, prod, config).then((res) => {
       alert(res.data ? 'Product added successfully!' : 'Failed to add product.');
       this.apiGetProducts();
     });
@@ -78,7 +81,7 @@ class ProductDetail extends Component {
 
   apiPutProduct = (id, prod) => {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.put(`/api/admin/products/${id}`, prod, config).then((res) => {
+    axios.put(`${API_URL}/api/admin/products/${id}`, prod, config).then((res) => {
       alert(res.data ? 'OK BABY!' : 'SORRY BABY!');
       this.apiGetProducts();
     });
@@ -86,7 +89,7 @@ class ProductDetail extends Component {
 
   apiDeleteProduct = (id) => {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.delete(`/api/admin/products/${id}`, config).then((res) => {
+    axios.delete(`${API_URL}/api/admin/products/${id}`, config).then((res) => {
       alert(res.data ? 'OK BABY!' : 'SORRY BABY!');
       this.apiGetProducts();
     });

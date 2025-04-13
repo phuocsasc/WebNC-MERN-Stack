@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import MyContext from '../contexts/MyContext';
 import CategoryDetail from './CategoryDetailComponent';
 
+// 👉 Lấy API_URL từ biến môi trường
+const API_URL = process.env.REACT_APP_API_URL;
+
 class Category extends Component {
   static contextType = MyContext; // using this.context to access global state
   constructor(props) {
@@ -66,7 +69,7 @@ class Category extends Component {
   // apis
   apiGetCategories() {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.get('/api/admin/categories', config).then((res) => {
+    axios.get(`${API_URL}/api/admin/categories`, config).then((res) => {
       const result = res.data;
       this.setState({ categories: result });
     });
