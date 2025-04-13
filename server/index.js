@@ -1,6 +1,12 @@
 //CLI: npm install express body-parser --save
 const express = require('express');
 const app = express();
+const cors = require('cors');
+app.use(cors({
+  origin: 'https://admin-frontend-pb44.onrender.com', // hoặc '*' trong giai đoạn test
+  credentials: true
+}));
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
@@ -17,8 +23,6 @@ app.use('/api/admin', require('./api/admin'));
 app.use('/api/customer', require('./api/customer'));
 
 // deployment
-const cors = require('cors');
-app.use(cors());
 const path = require('path');
 // '/admin' serve the files at client-admin/build/* as static files
 app.use('/admin', express.static(path.resolve(__dirname, '../client-admin/build')));
