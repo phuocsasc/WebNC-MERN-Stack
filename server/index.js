@@ -17,6 +17,8 @@ app.use('/api/admin', require('./api/admin'));
 app.use('/api/customer', require('./api/customer'));
 
 // deployment
+const cors = require('cors');
+app.use(cors());
 const path = require('path');
 // '/admin' serve the files at client-admin/build/* as static files
 app.use('/admin', express.static(path.resolve(__dirname, '../client-admin/build')));
