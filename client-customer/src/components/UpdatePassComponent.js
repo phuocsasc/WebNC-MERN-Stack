@@ -39,7 +39,7 @@ const UpdatePassComponent = () => {
       };
 
       return (
-            <div className="reset-password-container">
+            <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
                   <h2>Đặt lại mật khẩu</h2>
                   <form onSubmit={handleSubmit}>
                         <input

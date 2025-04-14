@@ -39,6 +39,7 @@ const ForgotPassword = () => {
                     <div className="mb-3">
                         <label className="form-label">Nhập email của bạn</label>
                         <input
+                            id= "bt-cl"
                             type="email"
                             className="form-control"
                             placeholder="Nhập email"
