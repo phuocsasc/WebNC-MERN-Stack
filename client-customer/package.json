@@ -40,6 +40,6 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "/",
+  "homepage": ".",
   "proxy": "https://server-jg2a.onrender.com"
 }

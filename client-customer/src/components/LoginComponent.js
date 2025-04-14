@@ -4,6 +4,8 @@ import MyContext from '../contexts/MyContext';
 import withRouter from '../utils/withRouter';
 import { Link } from 'react-router-dom';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 class Login extends Component {
   static contextType = MyContext;
 
@@ -81,7 +83,7 @@ class Login extends Component {
 
   // API login
   apiLogin(account) {
-    axios.post('/api/customer/login', account).then((res) => {
+    axios.post(`${API_URL}/api/customer/login`, account).then((res) => {
       const result = res.data;
       if (result.success === true) {
         this.context.setToken(result.token);

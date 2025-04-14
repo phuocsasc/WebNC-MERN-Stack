@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Navigate } from 'react-router-dom';
 import MyContext from '../contexts/MyContext';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 class Myprofile extends Component {
   static contextType = MyContext; // using this.context to access global state
   constructor(props) {
@@ -86,7 +88,7 @@ class Myprofile extends Component {
   // apis
   apiPutCustomer(id, customer) {
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.put('/api/customer/customers/' + id, customer, config).then((res) => {
+    axios.put(`${API_URL}/api/customer/customers/` + id, customer, config).then((res) => {
       const result = res.data;
       if (result) {
         alert('Good job!');

@@ -5,6 +5,8 @@ import withRouter from '../utils/withRouter';
 import imgSrc from '../imgs/logo.png';
 // import '../styles/Menu.css'; // Thêm file CSS để quản lý hiệu ứng
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 class Menu extends Component {
       constructor(props) {
             super(props);
@@ -96,7 +98,7 @@ class Menu extends Component {
 
       // API lấy danh mục sản phẩm
       apiGetCategories() {
-            axios.get('/api/customer/categories').then((res) => {
+            axios.get(`${API_URL}/api/customer/categories`).then((res) => {
                   const result = res.data;
                   this.setState({ categories: result });
             });

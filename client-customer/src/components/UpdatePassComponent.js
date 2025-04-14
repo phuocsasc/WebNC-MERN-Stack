@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const UpdatePassComponent = () => {
       const { token } = useParams(); // ✅ Lấy token từ URL
       const navigate = useNavigate();
@@ -24,7 +26,7 @@ const UpdatePassComponent = () => {
             try {
                   console.log("Token gửi đi update:", token); // 🛠 Debug token
 
-                  const response = await axios.post("/api/customer/reset-password", {
+                  const response = await axios.post(`${API_URL}/api/customer/reset-password`, {
                         token,
                         newPassword
                   });

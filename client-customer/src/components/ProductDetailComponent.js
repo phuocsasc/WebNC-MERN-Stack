@@ -5,6 +5,8 @@ import withRouter from '../utils/withRouter';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 // npm install react-bootstrap bootstrap
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 class ProductDetail extends Component {
   static contextType = MyContext; // using this.context to access global state
   constructor(props) {
@@ -95,7 +97,7 @@ class ProductDetail extends Component {
   }
   // apis
   apiGetProduct(id) {
-    axios.get('/api/customer/products/' + id).then((res) => {
+    axios.get(`${API_URL}/api/customer/products/` + id).then((res) => {
       const result = res.data;
       this.setState({ product: result });
     });

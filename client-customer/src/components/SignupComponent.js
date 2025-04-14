@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -67,7 +69,7 @@ class Signup extends Component {
   }
   // apis
   apiSignup(account) {
-    axios.post('/api/customer/signup', account).then((res) => {
+    axios.post(`${API_URL}/api/customer/signup`, account).then((res) => {
       const result = res.data;
       alert(result.message);
     });

@@ -7,6 +7,8 @@ import withRouter from '../utils/withRouter';
 import { Navigate } from 'react-router-dom';
 import { Table, Button, Image, Container, Alert, Form } from 'react-bootstrap';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 class Mycart extends Component {
   static contextType = MyContext; // using this.context to access global state
   render() {
@@ -120,7 +122,7 @@ class Mycart extends Component {
   apiCheckout(total, items, customer) {
     const body = { total: total, items: items, customer: customer };
     const config = { headers: { 'x-access-token': this.context.token } };
-    axios.post('/api/customer/checkout', body, config).then((res) => {
+    axios.post(`${API_URL}/api/customer/checkout`, body, config).then((res) => {
       const result = res.data;
       if (result) {
         alert('Good job!');

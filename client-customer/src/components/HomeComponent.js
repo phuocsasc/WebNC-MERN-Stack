@@ -6,6 +6,8 @@ import { FaFire, FaStar } from 'react-icons/fa';
 import '../styles/HomeComponent.css';
 // npm install react-icons@4.7.1
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -106,7 +108,7 @@ class Home extends Component {
   }
 
   apiGetNewProducts() {
-    axios.get('/api/customer/products/new')
+    axios.get(`${API_URL}/api/customer/products/new`)
       .then((res) => {
         this.setState({ newprods: res.data || [] });
       })
@@ -117,7 +119,7 @@ class Home extends Component {
   }
 
   apiGetHotProducts() {
-    axios.get('/api/customer/products/hot')
+    axios.get(`${API_URL}/api/customer/products/hot`)
       .then((res) => {
         this.setState({ hotprods: res.data || [] });
       })

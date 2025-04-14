@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 class Active extends Component {
   constructor(props) {
     super(props);
@@ -65,7 +67,7 @@ class Active extends Component {
   // apis
   apiActive(id, token) {
     const body = { id: id, token: token };
-    axios.post('/api/customer/active', body).then((res) => {
+    axios.post(`${API_URL}/api/customer/active`, body).then((res) => {
       const result = res.data;
       if (result) {
         alert('Good job!');

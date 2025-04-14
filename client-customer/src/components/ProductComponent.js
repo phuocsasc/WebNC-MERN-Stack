@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withRouter from '../utils/withRouter';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 class Product extends Component {
   constructor(props) { // props là đối tượng chứa các thuộc tính được truyền vào component từ cha
     super(props);
@@ -54,13 +56,13 @@ class Product extends Component {
   }
   // apis
   apiGetProductsByCatID(cid) { // Gửi request đến backend để lấy các sản phẩm theo category id.
-    axios.get('/api/customer/products/category/' + cid).then((res) => { // Khi server trả về dữ liệu thành công, hàm then được gọi.
+    axios.get(`${API_URL}/api/customer/products/category/` + cid).then((res) => { // Khi server trả về dữ liệu thành công, hàm then được gọi.
       const result = res.data; // Dữ liệu thực sự trả về từ server
       this.setState({ products: result });
     });
   }
   apiGetProductsByKeyword(keyword) {
-    axios.get('/api/customer/products/search/' + keyword).then((res) => {
+    axios.get(`${API_URL}/api/customer/products/search/` + keyword).then((res) => {
       const result = res.data;
       this.setState({ products: result });
     });

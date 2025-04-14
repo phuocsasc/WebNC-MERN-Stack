@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const ForgotPassword = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
@@ -12,7 +14,7 @@ const ForgotPassword = () => {
         setError("");
 
         try {
-            const response = await axios.post("/api/customer/forgotpassword", { email });
+            const response = await axios.post(`${API_URL}/api/customer/forgotpassword`, { email });
             setMessage(response.data.message || "Hãy kiểm tra email của bạn!");
         } catch (err) {
             setError(err.response?.data?.error || "Có lỗi xảy ra, vui lòng thử lại!");
