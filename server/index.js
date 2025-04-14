@@ -3,7 +3,10 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 app.use(cors({
-  origin: 'https://admin-frontend-pb44.onrender.com', // hoặc '*' trong giai đoạn test
+  origin: [
+    'https://admin-frontend-pb44.onrender.com',
+    'https://customer-frontend-ilj2.onrender.com'
+  ],                                                // hoặc '*' trong giai đoạn test
   credentials: true
 }));
 

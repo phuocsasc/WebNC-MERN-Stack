@@ -41,5 +41,8 @@
     ]
   },
   "homepage": ".",
-  "proxy": "https://server-jg2a.onrender.com"
+  "proxy": "https://server-jg2a.onrender.com",
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  }
 }
