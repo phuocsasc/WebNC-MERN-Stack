@@ -23,15 +23,15 @@ class Inform extends Component {
               <div>
                   <span id="hd-cl" className="me-3">👋 Hello <b>{this.context.customer.name}</b></span> 
                   <span className="text-muted">|</span>
-                  <Link to='/home' className="btn" id="hd-cl" onClick={() => this.lnkLogoutClick()}>Logout</Link> 
+                  <Link to='/mycart' className="btn" id="hd-cl">
+                    My Cart <span className="badge bg-danger ms-1">{this.context.mycart.length}</span>
+                  </Link>
+                  <span className="text-muted">|</span>
+                  <Link to='/myorders' className="btn" id="hd-cl">My orders</Link>
                   <span className="text-muted">|</span>
                   <Link to='/myprofile' className="btn" id="hd-cl">My profile</Link> 
                   <span className="text-muted">|</span>
-                  <Link to='/myorders' className="btn"id="hd-cl">My orders</Link>
-                  <span className="text-muted">|</span>
-                  <Link to='/mycart' className="btn"id="hd-cl">
-                    My Cart <span className="badge bg-danger ms-1">{this.context.mycart.length}</span>
-                  </Link>
+                  <Link to='/home' className="btn" id="hd-cl" onClick={() => this.lnkLogoutClick()}>Logout</Link> 
               </div>
             )}
           </div>

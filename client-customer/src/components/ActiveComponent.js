@@ -42,6 +42,7 @@ class Active extends Component {
             </div>
 
             <button
+              id="bt-cl"
               type="submit"
               className="btn btn-primary w-100"
               onClick={(e) => this.btnActiveClick(e)}
