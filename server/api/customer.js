@@ -164,7 +164,7 @@ router.post('/forgotpassword', async (req, res) => {
     }
 
     // 📨 Gửi email với đường link reset
-    const resetLink = `https://customer-frontend-ilj2.onrender.com/${resetToken}`;
+    const resetLink = `https://customer-frontend-ilj2.onrender.com/reset-password/${resetToken}`;
     await EmailResetPassUtil.send(email, resetLink);
 
     return res.json({ message: "Vui lòng kiểm tra email để đặt lại mật khẩu!" });
