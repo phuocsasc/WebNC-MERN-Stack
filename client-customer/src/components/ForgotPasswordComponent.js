@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // 👈 Thêm
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -7,6 +8,8 @@ const ForgotPassword = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate(); // 👈 Thêm
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,7 +18,14 @@ const ForgotPassword = () => {
 
         try {
             const response = await axios.post(`${API_URL}/api/customer/forgotpassword`, { email });
-            setMessage(response.data.message || "Hãy kiểm tra email của bạn!");
+            const token = response.data.token;
+            if (token) {
+                // 👇 Redirect sang trang đổi mật khẩu kèm token
+                navigate(`/reset-password/${token}`);
+            } else {
+                // Nếu không có token, fallback thông báo
+                alert("Vui lòng kiểm tra email của bạn!");
+            }
         } catch (err) {
             setError(err.response?.data?.error || "Có lỗi xảy ra, vui lòng thử lại!");
         }

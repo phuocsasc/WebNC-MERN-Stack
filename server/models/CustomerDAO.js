@@ -54,7 +54,7 @@ const CustomerDAO = {
 
     const resetToken = CryptoUtil.randomBytes(32);
     const hashedToken = CryptoUtil.md5(resetToken);
-    const expiryTime = Date.now() + 3600000; // 1 giờ
+    const expiryTime = Date.now() + 300000; // 5 phút
 
     // Cập nhật trực tiếp vào database
     const updatedCustomer = await Models.Customer.findOneAndUpdate(
