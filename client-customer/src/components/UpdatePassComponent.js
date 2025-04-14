@@ -5,7 +5,7 @@ import axios from "axios";
 const API_URL = process.env.REACT_APP_API_URL;
 
 const UpdatePassComponent = () => {
-      const { token } = useParams(); // ✅ Lấy token từ URL
+      const { token } = useParams();
       const navigate = useNavigate();
 
       const [newPassword, setNewPassword] = useState("");
@@ -19,13 +19,11 @@ const UpdatePassComponent = () => {
             setError("");
 
             if (newPassword !== confirmPassword) {
-                  setError("Mật khẩu không khớp! update");
+                  setError("Mật khẩu không khớp!");
                   return;
             }
 
             try {
-                  console.log("Token gửi đi update:", token); // 🛠 Debug token
-
                   const response = await axios.post(`${API_URL}/api/customer/reset-password`, {
                         token,
                         newPassword
@@ -34,32 +32,43 @@ const UpdatePassComponent = () => {
                   setMessage(response.data.message);
                   setTimeout(() => navigate("/login"), 3000);
             } catch (err) {
-                  setError(err.response?.data?.error || "Có lỗi xảy ra, vui lòng thử lại! update");
+                  setError(err.response?.data?.error || "Có lỗi xảy ra, vui lòng thử lại!");
             }
       };
 
       return (
             <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
-                  <h2>Đặt lại mật khẩu</h2>
-                  <form onSubmit={handleSubmit}>
-                        <input
-                              type="password"
-                              placeholder="Mật khẩu mới"
-                              value={newPassword}
-                              onChange={(e) => setNewPassword(e.target.value)}
-                              required
-                        />
-                        <input
-                              type="password"
-                              placeholder="Xác nhận mật khẩu"
-                              value={confirmPassword}
-                              onChange={(e) => setConfirmPassword(e.target.value)}
-                              required
-                        />
-                        <button type="submit">Đặt lại mật khẩu</button>
-                  </form>
-                  {message && <p className="success-message">{message}</p>}
-                  {error && <p className="error-message">{error}</p>}
+                  <div className="card shadow p-4" style={{ maxWidth: "400px", width: "100%" }}>
+                        <h3 className="text-center mb-4">Đặt lại mật khẩu</h3>
+                        <form onSubmit={handleSubmit}>
+                              <div className="mb-3">
+                                    <label className="form-label">Mật khẩu mới</label>
+                                    <input
+                                          type="password"
+                                          className="form-control"
+                                          placeholder="Nhập mật khẩu mới"
+                                          value={newPassword}
+                                          onChange={(e) => setNewPassword(e.target.value)}
+                                          required
+                                    />
+                              </div>
+                              <div className="mb-3">
+                                    <label className="form-label">Xác nhận mật khẩu</label>
+                                    <input
+                                          type="password"
+                                          className="form-control"
+                                          placeholder="Nhập lại mật khẩu"
+                                          value={confirmPassword}
+                                          onChange={(e) => setConfirmPassword(e.target.value)}
+                                          required
+                                    />
+                              </div>
+                              <button type="submit" className="btn btn-primary w-100">Đặt lại mật khẩu</button>
+                        </form>
+
+                        {message && <div className="alert alert-success mt-3">{message}</div>}
+                        {error && <div className="alert alert-danger mt-3">{error}</div>}
+                  </div>
             </div>
       );
 };

@@ -39,7 +39,6 @@ const ForgotPassword = () => {
                     <div className="mb-3">
                         <label className="form-label">Nhập email của bạn</label>
                         <input
-                            id= "bt-cl"
                             type="email"
                             className="form-control"
                             placeholder="Nhập email"
@@ -48,7 +47,7 @@ const ForgotPassword = () => {
                             required
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary w-100">Gửi yêu cầu</button>
+                    <button id="bt-cl" type="submit" className="btn btn-primary w-100">Gửi yêu cầu</button>
                 </form>
                 {message && <p className="alert alert-success mt-3">{message}</p>}
                 {error && <p className="alert alert-danger mt-3">{error}</p>}
